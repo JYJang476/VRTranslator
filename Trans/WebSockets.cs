@@ -27,8 +27,6 @@ namespace Trans
                 FS.Read(_data2, 0, _data2.Length);
                 FS.Close();
 
-
-
                 string _buf = "HTTP/1.1 200 ok\r\n";
                 _buf += "Data: " + FI.CreationTime.ToString() + "\r\n";
                 _buf += "server: Myung server\r\n";
@@ -119,20 +117,24 @@ namespace Trans
         {
             string url = "https://openapi.naver.com/v1/language/translate";
             HttpWebRequest request = (HttpWebRequest)WebRequest.Create(url);
-            request.Headers.Add("X-Naver-Client-Id", "c4v2fGhdf1YcAYVHznNq");
-            request.Headers.Add("X-Naver-Client-Secret", "Il_ZGFXiWk");
+            request.Headers.Add("X-Naver-Client-Id", "");
+            request.Headers.Add("X-Naver-Client-Secret", "");
             request.Method = "POST";
+            
             string query = source;
             byte[] byteDataParams = Encoding.UTF8.GetBytes("source=" + new frm_trans().txt_ori.Text + "&target=" + new frm_trans().txt_sor.Text + "&text=" + query);
             request.ContentType = "application/x-www-form-urlencoded";
             request.ContentLength = byteDataParams.Length;
             Stream st = request.GetRequestStream();
+            
             st.Write(byteDataParams, 0, byteDataParams.Length);
             st.Close();
+            
             HttpWebResponse response = (HttpWebResponse)request.GetResponse();
             Stream stream = response.GetResponseStream();
             StreamReader reader = new StreamReader(stream, Encoding.UTF8);
             string text = reader.ReadToEnd();
+            
             stream.Close();
             response.Close();
             reader.Close();
