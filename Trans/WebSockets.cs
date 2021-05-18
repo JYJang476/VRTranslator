@@ -178,7 +178,6 @@ namespace Trans
 
             buf_nt.Write(res, 0, res.Length);
 
-            
         }
 
         public TcpListener CreateServer()
@@ -188,7 +187,5 @@ namespace Trans
 
             return main_server;
         }
-
-        
     }
 }
