@@ -64,10 +64,7 @@ namespace Trans
         public static void Overlay_Send()
         {
 
-            // Creating notification
             var overlay = OpenVR.Overlay;
-            //var notificationError = OpenVR.Notifications.CreateNotification(handle, 0, EVRNotificationType.Transient, msg, EVRNotificationStyle.None, ref notificationBitmap,0ref id);
-            //if (notificationError == EVRNotificationError.OK) Console.WriteLine("Notification was displayed successfully.");
             ulong handle = 0;           
 
             if (overlay.FindOverlay("Trans", ref handle) != EVROverlayError.None &&
@@ -118,19 +115,7 @@ namespace Trans
 
             new frm_trans();
             frm_trans.Instance.Show();
-            //Application.Run(new frm_trans());
-            Application.DoEvents();
-
-            /*
-            m_RenderForm = new RenderForm
-            {
-                AllowUserResizing = false,
-                ClientSize = new System.Drawing.Size(512, 768),
-                Icon = null,
-                Text = "ex"
-            };
-            */
-
+            
             Application.DoEvents();
             
             Device.CreateWithSwapChain(SharpDX.Direct3D.DriverType.Hardware, DeviceCreationFlags.BgraSupport, new[] {
@@ -145,6 +130,7 @@ namespace Trans
                 SwapEffect = SwapEffect.Discard,
                 Usage = Usage.RenderTargetOutput
             }, out m_Device, out m_SwapChain);
+            
             m_SwapChain.GetParent<SharpDX.DXGI.Factory>().MakeWindowAssociation(frm_trans.Instance.Handle, WindowAssociationFlags.IgnoreAll);
             m_BackBuffer2 = new Texture2D(m_Device, new Texture2DDescription()
             {
@@ -200,17 +186,11 @@ namespace Trans
                         m_RenderTarget2.DrawText(transtext, textFormat4, new RawRectangleF(100, 630 ,1024,685), whiteBrush2, DrawTextOptions.Clip);
 
                         m_RenderTarget2.EndDraw();
-                    
-                        //m_SwapChain.Present(1, PresentFlags.None);
 
                         Overlay_Send();
-                        
-                }
-            }
-            
-            
-        }
-        
-        }
-    }
+               }
+           }
+       }
+   }
+}
 
