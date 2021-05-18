@@ -45,8 +45,6 @@ namespace Trans
                 _buf += "\r\n";
                 client.Send(Encoding.Default.GetBytes(_buf));
                 _data2 = Encoding.Default.GetBytes("Bed Request");
-
-
             }
             return _data2;
         }
